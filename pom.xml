@@ -58,9 +58,9 @@
     </dependency>
 </dependencies>
 	<build>
+		<finalName>project</finalName>
 		<plugins>
 			<plugin>
-				<finalName>project</finalName>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
