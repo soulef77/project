@@ -1,3 +1,4 @@
+package test.java.tp.com.example.project;
 
 import tp.com.example.project.Main;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,7 @@ import tp.com.example.project.Main;
 import tp.com.example.project.Main;
 import org.springframework.boot.test.context.SpringBootTest;
 
-
+@SpringBootTest
 public class MainTest {
 
     @Test
