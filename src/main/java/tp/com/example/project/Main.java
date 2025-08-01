@@ -6,7 +6,11 @@ public class Main {
         System.out.println("Hello, World!");
     }
 
-    public String getGreeting() {
+    public String getMessage() {
         return "Hello, World!";
+    }
+
+    public String getMessage(String name) {
+        return "Hello, " + name + "!";
     }
 }
