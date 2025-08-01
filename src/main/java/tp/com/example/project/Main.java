@@ -1,4 +1,4 @@
-package test.java.tp.com.example.project;
+package tp.com.example.project;
 
 public class Main {
 
