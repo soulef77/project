@@ -1,0 +1,59 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Checkout') {
+            steps {
+                script {
+                    try {
+                       git url: 'https://github.com/soulef77/project.git', credentialsId: '07cd5366-4dfa-459c-8c98-0e5685026f87'
+                    } catch (Exception e) {
+                        echo "Erreur lors du checkout : ${e.getMessage()}"
+                        currentBuild.result = 'FAILURE'
+                        error("Échec du checkout")
+                    }
+                }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                script {
+                    try {
+                        sh 'mvn clean package'
+                    } catch (Exception e) {
+                        echo "Erreur lors de la construction : ${e.getMessage()}"
+                        currentBuild.result = 'FAILURE'
+                        error("Échec de la construction")
+                    }
+                }
+            }
+        }
+
+        stage('Test') {
+            steps {
+                script {
+                    try {
+                        sh 'mvn test'
+                    } catch (Exception e) {
+                        echo "Erreur lors des tests : ${e.getMessage()}"
+                        currentBuild.result = 'FAILURE'
+                        error("Échec des tests")
+                    }
+                }
+            }
+
+            post {
+                always {
+                    junit '**/target/surefire-reports/*.xml'
+                }
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+}
